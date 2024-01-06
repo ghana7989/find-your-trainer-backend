@@ -1,4 +1,3 @@
-import { NextFunction, Request, Response } from 'express'
 import mongoose from 'mongoose'
 import process from 'process'
 
@@ -15,13 +14,4 @@ export const setUpDbConnection = (dbName: string) => {
 				reject(error)
 			})
 	})
-}
-
-export const dbConnectionMiddleware = async (
-	req: Request,
-	res: Response,
-	next: NextFunction
-) => {
-	await setUpDbConnection('find-trainer')
-	next()
 }

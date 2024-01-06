@@ -1,17 +1,18 @@
-import express from 'express'
-import dotenv from 'dotenv'
-import { dbConnectionMiddleware } from './src/config/dbConnection'
-import router from './src/routes'
-import multer from 'multer'
-import path from 'path'
 import cors from 'cors'
+import dotenv from 'dotenv'
+import express from 'express'
+import path from 'path'
+import { setUpDbConnection } from './src/config/dbConnection'
+import router from './src/routes'
 
 dotenv.config()
+;(async function () {
+	await setUpDbConnection('find-trainer')
+})()
 const app = express()
 app.use(express.json())
 app.use(cors())
 app.use(express.urlencoded())
-app.use(dbConnectionMiddleware)
 app.use(router)
 app.use(express.json())
 
@@ -20,5 +21,5 @@ app.get('/', (req, res) => {
 	res.send('I am working')
 })
 app.listen(process.env.PORT, () => {
-	console.log(`⚡⚡⚡ server running : http://localhost:${process.env.PORT}`)
+	console.log(`⚡⚡⚡ server started`)
 })
