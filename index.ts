@@ -19,8 +19,6 @@ app.use('/', express.static(path.join(__dirname, 'uploads/')))
 app.get('/', (req, res) => {
 	res.send('I am working')
 })
-app.listen(process.env.BACK_PORT, () => {
-	console.log(
-		`⚡⚡⚡ server running : http://localhost:${process.env.BACK_PORT}`
-	)
+app.listen(process.env.PORT, () => {
+	console.log(`⚡⚡⚡ server running : http://localhost:${process.env.PORT}`)
 })
